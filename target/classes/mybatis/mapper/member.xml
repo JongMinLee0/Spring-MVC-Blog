@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mem">
+
+    <select id="signInMember" resultType="Integer">
+        SELECT COUNT(*) FROM MEMBER
+        <where>
+            <if test='id != null and !"".equals(id)'>
+                id = #{id}
+            </if>
+            and
+            <if test='password != null and !"".equals(password)'>
+                password = #{password}
+            </if>
+        </where>
+    </select>
+
+    <insert id="signupMember">
+        INSERT INTO MEMBER(no, id, password)
+        values(
+        mem_seq.nextval
+        ,
+        <if test='id != null and !"".equals(id)'>
+            id = #{id}
+        </if>
+        ,
+        <if test='password != null and !"".equals(password)'>
+            password = #{password}
+        </if>
+        )
+    </insert>
+
+
+</mapper>
