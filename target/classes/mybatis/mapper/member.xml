@@ -16,17 +16,13 @@
         </where>
     </select>
 
-    <insert id="signupMember">
-        INSERT INTO MEMBER(no, id, password)
-        values(
-        mem_seq.nextval
-        ,
+    <insert id="signUpMember">
+        INSERT INTO MEMBER values(mem_seq.nextval ,
         <if test='id != null and !"".equals(id)'>
-            id = #{id}
+            #{id},
         </if>
-        ,
         <if test='password != null and !"".equals(password)'>
-            password = #{password}
+            #{password}
         </if>
         )
     </insert>
